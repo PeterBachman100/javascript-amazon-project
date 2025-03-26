@@ -41,7 +41,7 @@ cart.forEach((cartItem) => {
                 <span class="update-quantity-link link-primary js-update-link" data-product-id="${matchingProduct.id}">
                 Update
                 </span>
-                <input class="quantity-input" type="number" min="1" max="1000" oninput="this.value = this.value < 0 ? '' : this.value" data-product-id="${matchingProduct.id}"/>
+                <input class="quantity-input" type="number" min="1" max="100" oninput="this.value = this.value < 0 || this.value > 1000 ? '' : this.value" data-product-id="${matchingProduct.id}"/>
                 <span class="save-quantity-link link-primary" data-product-id="${matchingProduct.id}">Save</span>
                 <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingProduct.id}">
                 Delete
