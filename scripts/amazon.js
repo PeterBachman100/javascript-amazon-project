@@ -11,7 +11,18 @@ function renderProductsGrid() {
 
   let productsHTML = '';
 
-  products.forEach((product) => {
+  const url = new URL(window.location.href);
+  const search = url.searchParams.get('search');
+
+  let filteredProducts = products;
+
+  if (search) {
+    filteredProducts= products.filter((product) => {
+      return product.name.includes(search) || product.keywords.includes(search);
+    })
+  }
+
+  filteredProducts.forEach((product) => {
       productsHTML += `
           <div class="product-container">
             <div class="product-image-container">
@@ -98,4 +109,23 @@ function renderProductsGrid() {
     });
   });
 
+  console.log(products);
+  
 }
+
+
+
+function search() {
+  window.location.href = '/amazon.html?search=' + document.querySelector('.search-bar').value.toLowerCase();
+}
+
+document.querySelector('.search-button').addEventListener('click', () => {
+  search();
+});
+document.querySelector('.search-bar').addEventListener('keypress', function(event) {
+  if(event.key == "Enter") {
+    event.preventDefault;
+    document.querySelector(`.search-button`).click();
+  }
+});
+
